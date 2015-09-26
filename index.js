@@ -2,7 +2,7 @@ var Hapi = require('hapi');
 var Good = require('good');
 
 var server = new Hapi.Server();
-server.connection({ port: 80 });
+server.connection({ port: 3000 });
 
 server.route({
     method: 'GET',
