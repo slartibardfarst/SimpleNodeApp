@@ -1,5 +1,7 @@
 var Hapi = require('hapi');
 var Good = require('good');
+var fs = require('fs');
+
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -8,7 +10,17 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply('Hello, feature 1!');
+        
+        var data = "pp";
+        fs.readFile('version_info/build_number.txt', 'utf8', function (err,data) {
+          if (err) {
+            return console.log('got an error: ' + err);
+          }
+          reply('Hello, version v' + data);
+        });
+
+console.log('here is the data' + data);
+        //reply('Hello, feature 1!' + data);
     }
 });
 
