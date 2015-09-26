@@ -1,10 +1,11 @@
 FROM node:4.1.1
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
 
-ONBUILD COPY package.json /usr/src/app/
-ONBUILD RUN npm install
-ONBUILD COPY . /usr/src/app
+COPY app /usr/src
+COPY version_info /usr/src
+RUN cd app; npm install
 
-CMD [ "npm", "start" ]
+EXPOSE 3000
+CMD ["node", "app/index.js"]
